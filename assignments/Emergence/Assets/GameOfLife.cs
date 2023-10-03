@@ -8,6 +8,8 @@ public class GameOfLife : MonoBehaviour
 
     public GameObject cellprefab;
 
+    public GameObject text;
+
     CellScript[,] cellMatrix;
     bool[,] tempCellMatrix;
     int playerX;
@@ -15,6 +17,7 @@ public class GameOfLife : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        text.SetActive(false);
         cellMatrix = new CellScript[40, 80];
         tempCellMatrix = new bool[40, 80];
         for (int x = 0; x < 40; x++){
@@ -113,6 +116,7 @@ public class GameOfLife : MonoBehaviour
                 }
                 if(cellMatrix[x, y].GetComponent<CellScript>().alive && cellMatrix[x, y].GetComponent<CellScript>().isPlayer){
                     Debug.Log("You are Dead");
+                    text.SetActive(true);
                 }
             }
         }
