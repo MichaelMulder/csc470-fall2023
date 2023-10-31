@@ -115,7 +115,6 @@ public class GameOfLife : MonoBehaviour
                     cellMatrix[x , y].GetComponent<CellScript>().alive = false;
                 }
                 if(cellMatrix[x, y].GetComponent<CellScript>().alive && cellMatrix[x, y].GetComponent<CellScript>().isPlayer){
-                    Debug.Log("You are Dead");
                     text.SetActive(true);
                 }
             }
