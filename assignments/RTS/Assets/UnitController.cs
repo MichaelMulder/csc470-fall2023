@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitController : MonoBehaviour{
     
@@ -27,12 +28,22 @@ public class UnitController : MonoBehaviour{
 
     public int goldAmount;
 
+    RaycastHit hit;
+    Vector3 movePoint;
+
+    public GameObject transPrefab;
+
 
     // Start is called before the first frame update
     void Start()
     {
         defaultColor = bodyRenderer.material.color;
         GameManager.SharedInstance.units.Add(this);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if(Physics.Raycast(ray, out hit, 50000f, (1 << 8))){
+            transform.position = hit.point;
+        }
     }
 
     // Update is called once per frame
@@ -57,7 +68,14 @@ public class UnitController : MonoBehaviour{
                 hasTarget = false;
             }
         }
-        //Debug.Log(goldAmount);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out hit, 50000f, (1 << 8))){
+            transform.position = hit.point;
+        }
+        if(Input.GetMouseButton(0)){
+            GameObject trans = Instantiate(transPrefab, transform.position, transform.rotation);
+            Destroy(trans);
+        }
     }
 
     private void OnMouseDown()

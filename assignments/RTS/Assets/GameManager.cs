@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject goldPrefab;
 
+    [SerializeField] private Button btn = null;
+
     // Start is called before the first frame update
     void Awake()
     {
