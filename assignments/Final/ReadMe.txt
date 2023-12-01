@@ -1,3 +1,0 @@
-Ream Me
-Text
-Mic
